@@ -1,26 +1,172 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Regular-trial.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Regular-Italic-trial.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Light-trial.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Light-Italic-trial.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Medium-trial.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Medium-Italic-trial.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Bold-trial.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Blacker Display';
+  src: url('/fonts/blacker-display-webfont/Blacker-Display-Bold-italic-trial.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BW Diagrid';
+  src: url('/fonts/bw-diagrid/BwDiagrid-Regular.woff2') format('woff2'),
+       url('/fonts/bw-diagrid/BwDiagrid-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Jadyn Maria';
+  src: url('/fonts/jadyn-maria-free/Jadyn Maria.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --crimson: #561a28;
+    --forest: #28362b;
+    --gold: #e1b258;
+    --bark: #594433;
+    --stone: #b9b4a8;
+    --linen: #e1d5c9;
+    --taupe: #ab948a;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: #f5f1ed;
+    color: #28362b;
+    font-family: 'BW Diagrid', 'Georgia', serif;
+    letter-spacing: 0 !important;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Blacker Display', 'Georgia', serif;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0 !important;
+  }
+
+  p, span, a, button, input, textarea, label, div {
+    letter-spacing: 0 !important;
+  }
+
+  * {
+    letter-spacing: 0 !important;
+  }
+
+  .font-accent {
+    font-family: 'Jadyn Maria', 'Georgia', serif;
+  }
+
+  .font-display {
+    font-family: 'Blacker Display', 'Georgia', serif;
+  }
+
+  .font-body {
+    font-family: 'BW Diagrid', 'Helvetica Neue', sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f1ed;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--taupe);
+}
+
+/* Utility classes */
+.text-gold { color: var(--gold); }
+.text-linen { color: var(--linen); }
+.text-stone { color: var(--stone); }
+.text-taupe { color: var(--taupe); }
+.text-crimson { color: var(--crimson); }
+.text-forest { color: var(--forest); }
+
+.bg-crimson { background-color: var(--crimson); }
+.bg-forest { background-color: var(--forest); }
+.bg-gold { background-color: var(--gold); }
+.bg-bark { background-color: var(--bark); }
+.bg-stone { background-color: var(--stone); }
+.bg-linen { background-color: var(--linen); }
+.bg-taupe { background-color: var(--taupe); }
+
+.border-gold { border-color: var(--gold); }
+.border-stone { border-color: var(--stone); }
+.border-taupe { border-color: var(--taupe); }
+
+/* Thin horizontal rule */
+.rule-gold {
+  border: none;
+  border-top: 1px solid var(--gold);
+  opacity: 0.4;
 }
