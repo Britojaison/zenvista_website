@@ -15,7 +15,7 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/videos/zenora_main_video.mp4"
+        src="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
         muted
         loop
         playsInline
