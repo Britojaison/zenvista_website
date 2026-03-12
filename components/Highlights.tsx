@@ -1,7 +1,7 @@
 "use client";
 
 const highlights = [
-  { num: "59", label: "Exclusive Units" },
+  { num: "60", label: "Exclusive Units" },
   { num: "3", label: "Villa Configurations" },
   { num: "5+", label: "Rooftop Experiences" },
   { num: "10", label: "From Airport" },

@@ -55,7 +55,7 @@ export default function Residences() {
       </div>
       <div className="mt-16 flex items-center gap-6">
         <div className="w-16 h-px bg-[#e1b258] opacity-40" />
-        <p className="font-body text-[#594433] text-xs uppercase">Starting at ₹5.5 Cr · 59 exclusive units</p>
+        <p className="font-body text-[#594433] text-xs uppercase">Starting at ₹5.5 Cr · 60 exclusive units</p>
       </div>
     </section>
   );

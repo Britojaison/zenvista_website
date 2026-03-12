@@ -28,9 +28,12 @@ export default function Navbar() {
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         {/* Logo */}
-        <a href="#" className="flex flex-col leading-none">
-          <span className={`font-display text-xl transition-colors duration-700 ${scrolled ? "text-[#28362b]" : "text-white"}`}>ZENORA</span>
-          <span className={`font-body text-[10px] uppercase transition-colors duration-700 ${scrolled ? "text-[#e1b258]" : "text-[#e1b258]"}`}>by ZenVistas</span>
+        <a href="#" className="flex items-center gap-3">
+          <img 
+            src="/images/zenora_logo.svg" 
+            alt="Zenora Logo" 
+            className={`h-10 w-auto transition-all duration-700 ${scrolled ? "" : "brightness-0 invert"}`}
+          />
         </a>
 
         {/* Desktop nav */}

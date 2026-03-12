@@ -4,7 +4,7 @@ import Image from "next/image";
 const proximities = [
   { place: "Coimbatore Airport", dist: "5 km" },
   { place: "KCT Tech Park", dist: "10 min" },
-  { place: "Shri Lakshmi Medical Center", dist: "10 min" },
+  { place: "KMCH Hospital", dist: "10 min" },
   { place: "Reliance Mart", dist: "10 min" },
   { place: "Top Schools", dist: "10 min" },
   { place: "Ooty Access", dist: "Nilgiri foothills" },

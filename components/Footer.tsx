@@ -5,10 +5,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <p className="font-display text-2xl text-[#e1d5c9] mb-1">ZENORA</p>
-            <p className="font-body text-[#e1b258] text-[10px] uppercase mb-6">
-              by ZenVistas
-            </p>
+            <img 
+              src="/images/zenora_logo.svg" 
+              alt="Zenora Logo" 
+              className="h-12 w-auto mb-4 brightness-0 invert"
+            />
             <p className="font-body text-[#b9b4a8] text-xs leading-relaxed max-w-xs">
               An affordable luxury villa community in Goldwins, Coimbatore.
               Elevation without compromise.
