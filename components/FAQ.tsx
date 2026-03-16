@@ -53,7 +53,7 @@ export default function FAQ() {
                   </span>
                 </button>
                 {open === i && (
-                  <p className="font-body text-[#594433] text-sm leading-[1.9] pb-6">{f.a}</p>
+                  <p className="font-body text-[#594433] text-base leading-[1.9] pb-6">{f.a}</p>
                 )}
               </div>
             ))}

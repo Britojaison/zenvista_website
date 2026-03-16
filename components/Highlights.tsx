@@ -51,7 +51,7 @@ export default function Highlights() {
                 className="flex items-start gap-4 py-5 border-b border-[#e1d5c9]/10"
               >
                 <span className="w-1 h-1 rounded-full bg-[#e1b258] mt-2 shrink-0" />
-                <p className="font-body text-[#b9b4a8] text-sm leading-relaxed">{f}</p>
+                <p className="font-body text-[#b9b4a8] text-base leading-relaxed">{f}</p>
               </div>
             ))}
           </div>

@@ -23,7 +23,7 @@ export default function Contact() {
             <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#e1d5c9] mb-8">
               Begin your<br />Zenora journey
             </h2>
-            <p className="font-body text-[#e1d5c9]/70 text-sm leading-[1.9] mb-10">
+            <p className="font-body text-[#e1d5c9]/70 text-base leading-[1.9] mb-10">
               Our team is ready to walk you through every detail — from floor plans to
               financing. Reach out and let us show you what elevation truly feels like.
             </p>
@@ -33,13 +33,13 @@ export default function Contact() {
               </p>
               <a
                 href="tel:+919999999999"
-                className="font-body text-[#e1b258] text-sm hover:underline"
+                className="font-body text-[#e1b258] text-base hover:underline"
               >
                 +91 [phone_number]
               </a>
               <a
                 href="mailto:hello@zenvistas.co.in"
-                className="font-body text-[#e1b258] text-sm hover:underline"
+                className="font-body text-[#e1b258] text-base hover:underline"
               >
                 hello@zenvistas.co.in
               </a>

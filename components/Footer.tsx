@@ -10,7 +10,7 @@ export default function Footer() {
               alt="Zenora Logo" 
               className="h-12 w-auto mb-4 brightness-0 invert"
             />
-            <p className="font-body text-[#b9b4a8] text-xs leading-relaxed max-w-xs">
+            <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs">
               An affordable luxury villa community in Goldwins, Coimbatore.
               Elevation without compromise.
             </p>
@@ -37,7 +37,7 @@ export default function Footer() {
             <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
               Contact
             </p>
-            <p className="font-body text-[#b9b4a8] text-xs leading-relaxed">
+            <p className="font-body text-[#b9b4a8] text-base leading-relaxed">
               Goldwins, Coimbatore<br />Tamil Nadu, India
             </p>
             <a href="mailto:hello@zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">

@@ -18,7 +18,7 @@ export default function Location() {
           <div>
             <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Location</p>
             <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b] mb-8">Know your<br />neighbourhood</h2>
-            <p className="font-body text-[#594433] text-sm leading-[1.9] mb-10">
+            <p className="font-body text-[#594433] text-base leading-[1.9] mb-10">
               Goldwins offers calm neighbourhood living with direct access to essentials.
               Steady development, strong residential demand, and the quiet confidence of
               a location that has already arrived.
@@ -26,7 +26,7 @@ export default function Location() {
             <div className="flex flex-col gap-0">
               {proximities.map((p, i) => (
                 <div key={i} className="flex items-center justify-between py-4 border-b border-[#ab948a]/20">
-                  <span className="font-body text-[#594433] text-sm">{p.place}</span>
+                  <span className="font-body text-[#594433] text-base">{p.place}</span>
                   <span className="font-body text-[#e1b258] text-xs">{p.dist}</span>
                 </div>
               ))}

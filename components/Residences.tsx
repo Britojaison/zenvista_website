@@ -42,13 +42,15 @@ export default function Residences() {
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0b] via-[#0e0c0b]/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:translate-y-[-8px]">
+            <div className="absolute bottom-0 left-0 right-0 p-8">
               <span className="font-body text-[#e1b258] text-[10px] uppercase block mb-2">{u.tag}</span>
               <h3 className="font-display text-2xl text-white mb-3" style={{ fontWeight: 300, fontStyle: 'italic' }}>{u.label}</h3>
-              <p className="font-body text-[#e1d5c9] text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 mb-4">{u.desc}</p>
-              <span className="inline-flex items-center gap-2 font-body text-[9px] uppercase text-[#e1b258] opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:gap-3">
-                Enquire <span className="w-6 h-px bg-[#e1b258] group-hover:w-8 transition-all duration-500" />
-              </span>
+              <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
+                <p className="font-body text-[#e1d5c9] text-sm leading-relaxed mb-4">{u.desc}</p>
+                <span className="inline-flex items-center gap-2 font-body text-[9px] uppercase text-[#e1b258] group-hover:gap-3">
+                  Enquire <span className="w-6 h-px bg-[#e1b258] group-hover:w-8 transition-all duration-500" />
+                </span>
+              </div>
             </div>
           </div>
         ))}
