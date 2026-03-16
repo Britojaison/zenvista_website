@@ -1,5 +1,7 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
+import LeadForm from "./LeadForm";
 
 const units = [
   {
@@ -23,6 +25,8 @@ const units = [
 ];
 
 export default function Residences() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <section id="residences" className="pt-8 pb-32 px-6 md:px-20 max-w-screen-xl mx-auto">
       <div className="mb-20">
@@ -47,9 +51,12 @@ export default function Residences() {
               <h3 className="font-display text-2xl text-white mb-3" style={{ fontWeight: 300, fontStyle: 'italic' }}>{u.label}</h3>
               <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
                 <p className="font-body text-[#e1d5c9] text-sm leading-relaxed mb-4">{u.desc}</p>
-                <span className="inline-flex items-center gap-2 font-body text-[9px] uppercase text-[#e1b258] group-hover:gap-3">
+                <button
+                  onClick={() => setShowForm(true)}
+                  className="inline-flex items-center gap-2 font-body text-[9px] uppercase text-[#e1b258] group-hover:gap-3 transition-all duration-500"
+                >
                   Enquire <span className="w-6 h-px bg-[#e1b258] group-hover:w-8 transition-all duration-500" />
-                </span>
+                </button>
               </div>
             </div>
           </div>
@@ -59,6 +66,7 @@ export default function Residences() {
         <div className="w-16 h-px bg-[#e1b258] opacity-40" />
         <p className="font-body text-[#594433] text-xs uppercase">Starting at ₹5.5 Cr · 60 exclusive units</p>
       </div>
+      <LeadForm open={showForm} onClose={() => setShowForm(false)} />
     </section>
   );
 }
