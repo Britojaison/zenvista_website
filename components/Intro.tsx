@@ -20,8 +20,8 @@ export default function Intro() {
             curated lifestyle spaces.
           </p>
           <p className="font-body text-[#594433] text-sm leading-[1.9]">
-            Sky Garden, Aqua Lounge, and Star Deck — offering a calm, elevated way of living
-            without leaving convenience behind.
+            The Horizon Garden, Serenity Pool, and Business Lounge,
+            offering an elevated living experience with all the modern comforts
           </p>
           <a
             href="#residences"

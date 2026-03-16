@@ -6,7 +6,7 @@ export default function Hero() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   }, []);
 
@@ -30,7 +30,7 @@ export default function Hero() {
         </h1>
         <div className="w-16 h-px bg-[#e1b258] opacity-60 my-8" />
         <p className="font-body text-white text-sm md:text-base max-w-md leading-relaxed">
-          This is not escape. This is elevation.
+          An exclusive community of 60 thoughtfully designed villas, where luxury meets tranquility
         </p>
         <a
           href="#residences"
