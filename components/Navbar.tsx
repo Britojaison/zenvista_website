@@ -32,7 +32,7 @@ export default function Navbar() {
           <img 
             src="/images/zenora_logo.svg" 
             alt="Zenora Logo" 
-            className={`h-10 w-auto transition-all duration-700 ${scrolled ? "" : "brightness-0 invert"}`}
+            className={`h-10 w-auto transition-all duration-700 ${scrolled ? "brightness-0" : ""}`}
           />
         </a>
 
