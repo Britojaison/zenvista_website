@@ -4,47 +4,47 @@ const amenities = [
   {
     name: "Meditation Centre",
     desc: "A quiet sanctuary within Zenora. Designed for reflection, stillness, and moments away from the rhythm of the day.",
-    img: "/images/AMENITIES/Meditation Centre.png",
+    img: "/img/amenities/meditation-centre.jpg",
   },
   {
     name: "Board Room",
     desc: "A private meeting space within the community. For discussions, decisions, and work that demands focus.",
-    img: "/images/AMENITIES/Board Room.png",
+    img: "/img/amenities/board-room.jpg",
   },
   {
     name: "Open Workstations",
     desc: "Workspaces that extend beyond the home. Thoughtfully placed to support productivity within a calm environment.",
-    img: "/images/AMENITIES/Open Workstations.png",
+    img: "/img/amenities/open-workstations.jpg",
   },
   {
     name: "Clubhouse",
     desc: "A shared address within Zenora. A place where conversations, quiet gatherings, and community moments naturally unfold.",
-    img: "/images/AMENITIES/Clubhouse.png",
+    img: "/img/amenities/clubhouse.jpg",
   },
   {
     name: "Swimming Pool",
     desc: "A calm water retreat within the landscape. Meant for slow laps, quiet afternoons, and a refreshing pause.",
-    img: "/images/AMENITIES/Swimming Pool.png",
+    img: "/img/amenities/swimming-pool.jpg",
   },
   {
     name: "Walking Paths",
     desc: "Pathways that move gently through Zenora. Designed for morning walks, evening conversations, and unhurried movement.",
-    img: "/images/AMENITIES/Walking Paths.png",
+    img: "/img/amenities/walking-paths.jpg",
   },
   {
     name: "Multi Sport Court",
     desc: "A versatile court where recreation finds its place. From quick games to longer evenings of sport.",
-    img: "/images/AMENITIES/Multi Sport Court.png",
+    img: "/img/amenities/multi-sport-court.jpg",
   },
   {
     name: "Children's Play Garden",
     desc: "A lively corner of the community. Designed for exploration, imagination, and carefree play.",
-    img: "/images/AMENITIES/Childrens-Play-Garden.png",
-  },
+    img: "/img/amenities/childrens-play-garden.jpg",
+  },  
   {
     name: "Community Lounge",
     desc: "An informal setting for conversation and connection. A place where neighbours meet beyond the everyday.",
-    img: "/images/AMENITIES/Open Workstations.png",
+    img: "/img/amenities/open-workstations.jpg",
   },
 ];
 
