@@ -9,7 +9,7 @@ const amenities = [
   {
     name: "Board Room",
     desc: "A private meeting space within the community. For discussions, decisions, and work that demands focus.",
-    img: "/images/AMENITIES/boardroom.png",
+    img: "/img/amenities/board-room.png",
   },
   {
     name: "Open Workstations",
@@ -49,17 +49,17 @@ const amenities = [
   {
     name: "Cricket",
     desc: "For the familiar rhythm of the game. Evenings often gather here around friendly matches and spirited play.",
-    img: "/images/AMENITIES/cricket.png",
+    img: "/img/amenities/cricket.jpg",
   },
   {
     name: "Private Theatre",
     desc: "Cinema-grade entertainment in the comfort of your community. Because evenings should be extraordinary.",
-    img: "/images/AMENITIES/Private Theatre.png",
+    img: "/img/amenities/private-theatre.jpg",
   },
   {
     name: "Garden Cafe",
     desc: "A serene cafe nestled within lush gardens, offering a perfect spot to enjoy freshly brewed coffee or light bites amidst nature's tranquility.",
-    img: "/images/AMENITIES/Garden Cafe Small.png",
+    img: "/img/amenities/garden-cafe.jpg",
   },
 ];
 

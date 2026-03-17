@@ -27,22 +27,7 @@ const outdoorImages = [
   "/outdoor/View-10.png",
   "/outdoor/View-12.png",
   "/outdoor/View-13.png",
-  "/outdoor/View-14.png",
-  "/outdoor/View-16.png",
-  "/outdoor/View-23_Day.png",
-  "/outdoor/View-26.png",
-  "/outdoor/View-28.png",
-  "/outdoor/View-32.png",
-  "/outdoor/View-33.png",
-  "/outdoor/View-36.png",
-  "/outdoor/View-37.png",
-  "/outdoor/View-38.png",
-  "/outdoor/View-41.png",
-  "/outdoor/View-43.png",
-  "/outdoor/View-44.png",
-  "/outdoor/View-45.png",
-  "/outdoor/View-46.png",
-  "/outdoor/View-47.png",
+  
 ];
 
 const clubhouseImages = [
