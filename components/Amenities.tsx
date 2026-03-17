@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 
 const amenities = [
   {
@@ -61,12 +60,10 @@ export default function Amenities() {
           {amenities.map((a) => (
             <div key={a.name} className="group relative overflow-hidden bg-[#f5f1ed]">
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
+                <img
                   src={a.img}
                   alt={a.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <div className="p-8">

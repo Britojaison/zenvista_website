@@ -17,10 +17,11 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
+        src="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_compressed.mp4"
         muted
         loop
         playsInline
+        preload="auto"
         poster="/img/street-view.jpg"
       />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">

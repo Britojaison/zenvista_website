@@ -22,6 +22,12 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
+          href="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
+          as="video"
+          type="video/mp4"
+        />
+        <link
+          rel="preload"
           href="/fonts/blacker-display-webfont/Blacker-Display-Light-Italic-trial.woff"
           as="font"
           type="font/woff"
