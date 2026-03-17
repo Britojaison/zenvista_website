@@ -62,36 +62,36 @@ export default function Gallery() {
   const [activeTab, setActiveTab] = useState<Tab>("indoor");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const currentImages = activeTab === "indoor" ? indoorImages : outdoorImages;
+  const displayImages = [...currentImages, ...currentImages];
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  }, []);
+    const children = el.children;
+    if (children.length > currentImages.length) {
+      const firstSetWidth = (children[currentImages.length] as HTMLElement).offsetLeft - (children[0] as HTMLElement).offsetLeft;
+      if (el.scrollLeft >= firstSetWidth) {
+        el.scrollLeft -= firstSetWidth;
+      }
+    }
+  }, [currentImages.length]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollLeft = 0;
-    checkScroll();
-  }, [activeTab, checkScroll]);
+  }, [activeTab]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    checkScroll();
     return () => {
       el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
     };
   }, [checkScroll]);
 
@@ -108,11 +108,16 @@ export default function Gallery() {
     autoScrollRef.current = setInterval(() => {
       const el = scrollRef.current;
       if (!el) return;
-      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        el.scrollBy({ left: 1, behavior: "auto" });
+      
+      const children = el.children;
+      if (children.length > currentImages.length) {
+        const firstSetWidth = (children[currentImages.length] as HTMLElement).offsetLeft - (children[0] as HTMLElement).offsetLeft;
+        if (el.scrollLeft >= firstSetWidth) {
+          el.scrollLeft -= firstSetWidth;
+        }
       }
+      
+      el.scrollBy({ left: 1, behavior: "auto" });
     }, 20);
 
     return () => {
@@ -121,11 +126,22 @@ export default function Gallery() {
         autoScrollRef.current = null;
       }
     };
-  }, [isHovered, lightboxIndex, activeTab]);
+  }, [isHovered, lightboxIndex, activeTab, currentImages.length]);
 
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
+    
+    const children = el.children;
+    if (children.length > currentImages.length) {
+      const firstSetWidth = (children[currentImages.length] as HTMLElement).offsetLeft - (children[0] as HTMLElement).offsetLeft;
+      if (direction === "left" && el.scrollLeft <= 0) {
+        el.scrollLeft += firstSetWidth;
+      } else if (direction === "right" && el.scrollLeft >= firstSetWidth) {
+        el.scrollLeft -= firstSetWidth;
+      }
+    }
+
     el.scrollBy({
       left: direction === "left" ? -el.clientWidth * 0.7 : el.clientWidth * 0.7,
       behavior: "smooth",
@@ -133,7 +149,7 @@ export default function Gallery() {
   };
 
   const openLightbox = (index: number) => {
-    setLightboxIndex(index);
+    setLightboxIndex(index % currentImages.length);
     document.body.style.overflow = "hidden";
   };
 
@@ -164,7 +180,7 @@ export default function Gallery() {
   }, [lightboxIndex, currentImages.length]);
 
   return (
-    <section id="gallery" className="py-32 px-6 md:px-20 max-w-screen-xl mx-auto">
+    <section id="gallery" className="pt-32 pb-16 px-6 md:px-20 max-w-screen-xl mx-auto">
       {/* Header */}
       <div className="mb-16">
         <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Gallery</p>
@@ -220,7 +236,6 @@ export default function Gallery() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {canScrollLeft && (
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
@@ -228,9 +243,7 @@ export default function Gallery() {
           >
             <ChevronLeft size={20} />
           </button>
-        )}
 
-        {canScrollRight && (
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
@@ -238,13 +251,12 @@ export default function Gallery() {
           >
             <ChevronRight size={20} />
           </button>
-        )}
 
         <div
           ref={scrollRef}
           className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar"
         >
-          {currentImages.map((src, i) => (
+          {displayImages.map((src, i) => (
             <div
               key={`${activeTab}-${i}`}
               className="relative flex-shrink-0 w-[350px] md:w-[450px] aspect-[4/3] overflow-hidden cursor-pointer group"
@@ -252,7 +264,7 @@ export default function Gallery() {
             >
               <Image
                 src={src}
-                alt={`${activeTab} view ${i + 1}`}
+                alt={`${activeTab} view ${(i % currentImages.length) + 1}`}
                 fill
                 sizes="(max-width: 768px) 350px, 450px"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -261,10 +273,6 @@ export default function Gallery() {
           ))}
         </div>
       </div>
-
-      <p className="font-body text-[#594433] text-[10px] uppercase mt-6">
-        * Images are for representation purpose
-      </p>
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
