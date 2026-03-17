@@ -9,8 +9,38 @@ interface LeadFormProps {
 
 export default function LeadForm({ open, onClose }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   if (!open) return null;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+    };
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
@@ -57,10 +87,7 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
 
             {/* Form */}
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit}
               className="flex flex-col gap-5"
             >
               {[
@@ -88,10 +115,15 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
 
               <button
                 type="submit"
-                className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-500"
+                disabled={loading}
+                className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-500 disabled:opacity-50"
               >
-                Download Brochure
+                {loading ? "Submitting..." : "Download Brochure"}
               </button>
+
+              {error && (
+                <p className="font-body text-red-500 text-xs text-center">{error}</p>
+              )}
 
               <p className="font-body text-[#ab948a] text-[10px] text-center mt-1">
                 By submitting, you agree to receive communication from ZenVistas.
