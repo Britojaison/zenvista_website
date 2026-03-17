@@ -10,7 +10,7 @@ const amenities = [
   {
     name: "Board Room",
     desc: "A private meeting space within the community. For discussions, decisions, and work that demands focus.",
-    img: "/images/AMENITIES/Board Room.png",
+    img: "/images/AMENITIES/board-room.png",
   },
   {
     name: "Open Workstations",
@@ -30,7 +30,7 @@ const amenities = [
   {
     name: "Walking Paths",
     desc: "Pathways that move gently through Zenora. Designed for morning walks, evening conversations, and unhurried movement.",
-    img: "/images/AMENITIES/Walking Paths.png",
+    img: "/images/AMENITIES/walkway.png",
   },
   {
     name: "Multi Sport Court",

@@ -4,20 +4,36 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
-    q: "What makes Zenora different from other villa communities?",
-    a: "Zenora offers villas with rooftop lifestyle spaces and multiple premium amenities. With just 59 units, it is designed for upgrade buyers who want premium living in a quieter residential pocket, just 10–15 minutes from key city conveniences.",
+    q: "Why choose ZenVistas Zenora in Goldwins?",
+    a: "Zenora is designed for those who value space, privacy, and thoughtful living. With only 59 villas, the community stays quiet and exclusive while still being close to the city. Rooftop lifestyle spaces, wide internal roads, and carefully planned amenities create a home that feels calm, refined, and private.",
   },
   {
-    q: "Why is Goldwins the right location?",
-    a: "Goldwins provides calm neighbourhood living with direct access to essentials like Shri Lakshmi Medical Center, Reliance Mart, KCT Tech Park, schools and retail zones. The area has steady development and strong residential demand.",
+    q: "Why is Goldwins suitable for long term living?",
+    a: "Goldwins has quietly grown into one of Coimbatore’s most well connected residential pockets. It offers easy access to Avinashi Road, the airport corridor, schools, hospitals, and workplaces, while still remaining a peaceful neighbourhood for everyday living.",
   },
   {
-    q: "Is Zenora RERA registered?",
-    a: "Yes. ZenVistas Zenora is fully RERA registered with planning and building approvals from local authorities, ensuring complete transparency and compliance.",
+    q: "Is Zenora approved and RERA registered?",
+    a: "Yes. Zenora is a fully approved project and registered under RERA. This ensures transparency in planning, construction timelines, and buyer protection, giving homeowners confidence and peace of mind.",
   },
   {
-    q: "What is the investment potential?",
-    a: "Zenora is a low-density luxury villa community offering exclusivity, privacy and premium planning. With a strong owner profile and location advantages like Nilgiri views and Ooty access, it offers strong rental and resale potential.",
+    q: "Why is Zenora a good long term investment?",
+    a: "Zenora combines a strong location with limited density living. With only a small number of villas and growing demand in the Goldwins area, the project offers both lifestyle value and long term asset strength.",
+  },
+  {
+    q: "What is the starting price for Zenora villas?",
+    a: "Zenora villas are positioned in the premium segment, with prices varying based on villa size, layout, and availability. Our team can guide you through the current pricing and help you explore the options that best suit your needs.",
+  },
+  {
+    q: "Who are the people behind ZenVistas developments?",
+    a: "ZenVistas is backed by a group of respected industrialists and business leaders who share a vision for building meaningful residential spaces. Their involvement brings experience, credibility, and a long term commitment to quality.",
+  },
+  {
+    q: "Who typically chooses to buy a home at Zenora?",
+    a: "Zenora attracts entrepreneurs, professionals, and business families who are looking to upgrade their lifestyle. Many buyers choose it for the privacy, space, and the quiet comfort of a well planned community.",
+  },
+  {
+    q: "What makes Zenora different from other luxury villa projects?",
+    a: "Zenora focuses on thoughtful design rather than scale. With limited villas, rooftop lifestyle spaces, and a carefully curated environment, the project offers a quieter and more refined living experience.",
   },
 ];
 
