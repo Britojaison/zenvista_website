@@ -24,6 +24,7 @@ export default function Hero() {
         preload="auto"
         poster="/img/street-view.jpg"
       />
+      <div className="absolute inset-0 bg-[#0e0c0b]/40" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <p className="font-body text-white text-sm uppercase mb-6">
           Goldwins, Coimbatore

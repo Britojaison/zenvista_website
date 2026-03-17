@@ -45,18 +45,39 @@ const outdoorImages = [
   "/outdoor/View-47.png",
 ];
 
-const tabInfo = {
+const clubhouseImages = [
+  "/clubhouse/View-06.png",
+  "/clubhouse/View-12.png",
+  "/clubhouse/clubgouseimg.png",
+  "/clubhouse/clubhouseimg2.png",
+];
+
+const tabs = ["indoor", "outdoor", "clubhouse"] as const;
+type Tab = (typeof tabs)[number];
+
+const tabInfo: Record<Tab, { label: string; title: string; desc: string }> = {
   indoor: {
+    label: "Indoor",
     title: "Indoor Spaces",
     desc: "Interiors defined by proportion and light. Spaces that feel calm, considered and quietly refined.",
   },
   outdoor: {
+    label: "Outdoor",
     title: "Outdoor Spaces",
     desc: "Landscapes that shape the rhythm of life at Zenora. Gardens, pathways and open courts designed for movement, pause and quiet community.",
   },
+  clubhouse: {
+    label: "Clubhouse",
+    title: "Clubhouse",
+    desc: "A space designed for connection. Zenora\u2019s clubhouse brings together refined interiors with curated areas for conversation, relaxation, and community.",
+  },
 };
 
-type Tab = "indoor" | "outdoor";
+const imageMap: Record<Tab, string[]> = {
+  indoor: indoorImages,
+  outdoor: outdoorImages,
+  clubhouse: clubhouseImages,
+};
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState<Tab>("indoor");
@@ -64,9 +85,12 @@ export default function Gallery() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const currentImages = activeTab === "indoor" ? indoorImages : outdoorImages;
+  const currentImages = imageMap[activeTab];
   const displayImages = [...currentImages, ...currentImages];
+
+  const activeIndex = tabs.indexOf(activeTab);
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -179,6 +203,33 @@ export default function Gallery() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lightboxIndex, currentImages.length]);
 
+  // Compute underline position from tab button refs
+  const getUnderlineStyle = () => {
+    const btn = tabRefs.current[activeIndex];
+    if (!btn) return { left: 0, width: 0 };
+    return {
+      left: btn.offsetLeft,
+      width: btn.offsetWidth,
+    };
+  };
+
+  const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    // Recalculate after render
+    const timeout = setTimeout(() => {
+      setUnderlineStyle(getUnderlineStyle());
+    }, 0);
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
+
+  // Also recalculate on mount
+  useEffect(() => {
+    setUnderlineStyle(getUnderlineStyle());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section id="gallery" className="pt-32 pb-16 px-6 md:px-20 max-w-screen-xl mx-auto">
       {/* Header */}
@@ -193,28 +244,24 @@ export default function Gallery() {
       <div className="mb-12">
         {/* Tabs */}
         <div className="relative inline-flex border-b border-[#ab948a]/20 mb-8">
-          <button
-            onClick={() => setActiveTab("indoor")}
-            className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
-              activeTab === "indoor" ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
-            }`}
-          >
-            Indoor
-          </button>
-          <button
-            onClick={() => setActiveTab("outdoor")}
-            className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
-              activeTab === "outdoor" ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
-            }`}
-          >
-            Outdoor
-          </button>
+          {tabs.map((tab, i) => (
+            <button
+              key={tab}
+              ref={(el) => { tabRefs.current[i] = el; }}
+              onClick={() => setActiveTab(tab)}
+              className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
+                activeTab === tab ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+              }`}
+            >
+              {tabInfo[tab].label}
+            </button>
+          ))}
           {/* Sliding underline indicator */}
           <span
             className="absolute bottom-0 h-[2px] bg-[#e1b258] transition-all duration-500 ease-in-out"
             style={{
-              left: activeTab === "indoor" ? "0px" : "50%",
-              width: "50%",
+              left: `${underlineStyle.left}px`,
+              width: `${underlineStyle.width}px`,
             }}
           />
         </div>

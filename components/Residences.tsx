@@ -5,19 +5,25 @@ import LeadForm from "./LeadForm";
 
 const units = [
   {
-    label: "Five Cent Villa",
+    number: "5",
+    text: "Cent Villa",
+    label: "5 Cent Villa",
     tag: "Intimate",
     desc: "A refined sanctuary designed for those who value privacy and precision. Every corner considered, every material chosen with intent.",
     img: "/img/master-bedroom-view-1.jpg",
   },
   {
-    label: "Eight Cent Villa",
+    number: "8",
+    text: "Cent Villa",
+    label: "8 Cent Villa",
     tag: "Signature",
     desc: "The balance of grandeur and warmth. Generous spaces that breathe, with rooftop access to the Sky Garden and Aqua Lounge.",
     img: "/img/7-cent-side.jpg",
   },
   {
-    label: "Eleven Cent Villa",
+    number: "11",
+    text: "Cent Villa",
+    label: "11 Cent Villa",
     tag: "Estate",
     desc: "The pinnacle of Zenora living. Expansive, commanding, and designed for those who have arrived — and know it.",
     img: "/img/bedroom01.jpg",
@@ -48,7 +54,10 @@ export default function Residences() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0b] via-[#0e0c0b]/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8">
               <span className="font-body text-[#e1b258] text-[10px] uppercase block mb-2">{u.tag}</span>
-              <h3 className="font-display text-2xl text-white mb-3" style={{ fontWeight: 300, fontStyle: 'italic' }}>{u.label}</h3>
+              <h3 className="text-3xl text-white mb-3 flex items-baseline gap-1.5" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400, fontStyle: 'italic', lineHeight: 1 }}>
+                <span style={{ fontVariantNumeric: "lining-nums", display: "inline-block", transform: "translateY(1px)" }}>{u.number}</span>
+                <span>{u.text}</span>
+              </h3>
               <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
                 <p className="font-body text-[#e1d5c9] text-sm leading-relaxed mb-4">{u.desc}</p>
                 <button
