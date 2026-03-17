@@ -9,7 +9,7 @@ const amenities = [
   {
     name: "Board Room",
     desc: "A private meeting space within the community. For discussions, decisions, and work that demands focus.",
-    img: "/img/amenities/board-room.jpg",
+    img: "/images/AMENITIES/boardroom.png",
   },
   {
     name: "Open Workstations",
@@ -40,11 +40,26 @@ const amenities = [
     name: "Children's Play Garden",
     desc: "A lively corner of the community. Designed for exploration, imagination, and carefree play.",
     img: "/img/amenities/childrens-play-garden.jpg",
-  },  
+  },
   {
     name: "Community Lounge",
     desc: "An informal setting for conversation and connection. A place where neighbours meet beyond the everyday.",
     img: "/img/amenities/open-workstations.jpg",
+  },
+  {
+    name: "Cricket",
+    desc: "For the familiar rhythm of the game. Evenings often gather here around friendly matches and spirited play.",
+    img: "/images/AMENITIES/cricket.png",
+  },
+  {
+    name: "Private Theatre",
+    desc: "Cinema-grade entertainment in the comfort of your community. Because evenings should be extraordinary.",
+    img: "/images/AMENITIES/Private Theatre.png",
+  },
+  {
+    name: "Garden Cafe",
+    desc: "A serene cafe nestled within lush gardens, offering a perfect spot to enjoy freshly brewed coffee or light bites amidst nature's tranquility.",
+    img: "/images/AMENITIES/Garden Cafe Small.png",
   },
 ];
 
@@ -56,7 +71,7 @@ export default function Amenities() {
           <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Lifestyle</p>
           <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b] max-w-lg">Spaces that shape how you live</h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#ab948a]/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#ab948a]/10">
           {amenities.map((a) => (
             <div key={a.name} className="group relative overflow-hidden bg-[#f5f1ed]">
               <div className="relative aspect-[4/3] overflow-hidden">
