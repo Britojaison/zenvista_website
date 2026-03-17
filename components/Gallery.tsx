@@ -1,48 +1,324 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
-  { src: "/img/aerial-view-club-hosue.jpg", span: "col-span-2 row-span-2" },
-  { src: "/img/master-bedroom-view-1.jpg", span: "" },
-  { src: "/img/bedroom01.jpg", span: "" },
-  { src: "/img/human-view-club-house.jpg", span: "col-span-2" },
-  { src: "/img/bathroom.jpg", span: "" },
-  { src: "/img/cafe-.jpg", span: "" },
+const indoorImages = [
+  "/indoor/bedroom01.jpg",
+  "/indoor/bathroom.jpg",
+  "/indoor/cafe-.jpg",
+  "/indoor/spa--saloon-.jpg",
+  "/indoor/View-11.png",
+  "/indoor/View-19.png",
+  "/indoor/View-20.png",
+  "/indoor/View-21.png",
+  "/indoor/View-42.png",
+  "/indoor/View-48.png",
 ];
 
+const outdoorImages = [
+  "/outdoor/View-01.png",
+  "/outdoor/View-03.png",
+  "/outdoor/View-04.png",
+  "/outdoor/View-05.png",
+  "/outdoor/View-06.png",
+  "/outdoor/View-08.png",
+  "/outdoor/View-09.png",
+  "/outdoor/View-10.png",
+  "/outdoor/View-12.png",
+  "/outdoor/View-13.png",
+  "/outdoor/View-14.png",
+  "/outdoor/View-16.png",
+  "/outdoor/View-23_Day.png",
+  "/outdoor/View-26.png",
+  "/outdoor/View-28.png",
+  "/outdoor/View-32.png",
+  "/outdoor/View-33.png",
+  "/outdoor/View-36.png",
+  "/outdoor/View-37.png",
+  "/outdoor/View-38.png",
+  "/outdoor/View-41.png",
+  "/outdoor/View-43.png",
+  "/outdoor/View-44.png",
+  "/outdoor/View-45.png",
+  "/outdoor/View-46.png",
+  "/outdoor/View-47.png",
+];
+
+const tabInfo = {
+  indoor: {
+    title: "Indoor Spaces",
+    desc: "Interiors defined by proportion and light. Spaces that feel calm, considered and quietly refined.",
+  },
+  outdoor: {
+    title: "Outdoor Spaces",
+    desc: "Landscapes that shape the rhythm of life at Zenora. Gardens, pathways and open courts designed for movement, pause and quiet community.",
+  },
+};
+
+type Tab = "indoor" | "outdoor";
+
 export default function Gallery() {
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<Tab>("indoor");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const currentImages = activeTab === "indoor" ? indoorImages : outdoorImages;
+
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollLeft = 0;
+    checkScroll();
+  }, [activeTab, checkScroll]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    window.addEventListener("resize", checkScroll);
+    checkScroll();
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [checkScroll]);
+
+  // Auto-scroll
+  useEffect(() => {
+    if (isHovered || lightboxIndex !== null) {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+        autoScrollRef.current = null;
+      }
+      return;
+    }
+
+    autoScrollRef.current = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: 1, behavior: "auto" });
+      }
+    }, 20);
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+        autoScrollRef.current = null;
+      }
+    };
+  }, [isHovered, lightboxIndex, activeTab]);
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({
+      left: direction === "left" ? -el.clientWidth * 0.7 : el.clientWidth * 0.7,
+      behavior: "smooth",
+    });
+  };
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+    document.body.style.overflow = "";
+  };
+
+  const navigateLightbox = (direction: "prev" | "next") => {
+    if (lightboxIndex === null) return;
+    if (direction === "prev") {
+      setLightboxIndex(lightboxIndex === 0 ? currentImages.length - 1 : lightboxIndex - 1);
+    } else {
+      setLightboxIndex(lightboxIndex === currentImages.length - 1 ? 0 : lightboxIndex + 1);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") navigateLightbox("prev");
+      if (e.key === "ArrowRight") navigateLightbox("next");
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightboxIndex, currentImages.length]);
 
   return (
     <section id="gallery" className="py-32 px-6 md:px-20 max-w-screen-xl mx-auto">
+      {/* Header */}
       <div className="mb-16">
         <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Gallery</p>
-        <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">See it to believe it</h2>
+        <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">
+          See it to believe it
+        </h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 auto-rows-[200px]">
-        {images.map((img, i) => (
-          <div key={i} className={`${img.span} relative overflow-hidden cursor-pointer group`} onClick={() => setLightbox(img.src)}>
-            <Image
-              src={img.src}
-              alt={`Zenora gallery ${i + 1}`}
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover group-hover:scale-110 group-hover:brightness-110 transition-all duration-700"
-            />
-            <div className="absolute inset-0 bg-[#28362b]/0 group-hover:bg-[#28362b]/10 transition-all duration-500" />
-          </div>
-        ))}
+
+      {/* Tab Switcher with sliding indicator */}
+      <div className="mb-12">
+        {/* Tabs */}
+        <div className="relative inline-flex border-b border-[#ab948a]/20 mb-8">
+          <button
+            onClick={() => setActiveTab("indoor")}
+            className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
+              activeTab === "indoor" ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+            }`}
+          >
+            Indoor
+          </button>
+          <button
+            onClick={() => setActiveTab("outdoor")}
+            className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
+              activeTab === "outdoor" ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+            }`}
+          >
+            Outdoor
+          </button>
+          {/* Sliding underline indicator */}
+          <span
+            className="absolute bottom-0 h-[2px] bg-[#e1b258] transition-all duration-500 ease-in-out"
+            style={{
+              left: activeTab === "indoor" ? "0px" : "50%",
+              width: "50%",
+            }}
+          />
+        </div>
+
+        {/* Description below tabs */}
+        <div className="max-w-2xl">
+          <h3 className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] text-[#28362b] mb-3">
+            {tabInfo[activeTab].title}
+          </h3>
+          <p className="font-body text-[#594433] text-base leading-relaxed">
+            {tabInfo[activeTab].desc}
+          </p>
+        </div>
       </div>
-      <p className="font-body text-[#594433] text-[10px] uppercase mt-6">* Images are for representation purpose</p>
-      {lightbox && (
-        <div className="fixed inset-0 z-50 bg-[#28362b]/95 flex items-center justify-center p-6" onClick={() => setLightbox(null)}>
-          <button className="absolute top-6 right-6 text-white hover:text-[#e1b258] transition-colors" onClick={() => setLightbox(null)} aria-label="Close">
+
+      {/* Horizontal Scrolling Gallery */}
+      <div
+        className="relative group/gallery"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {canScrollLeft && (
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={20} />
+          </button>
+        )}
+
+        {canScrollRight && (
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={20} />
+          </button>
+        )}
+
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar"
+        >
+          {currentImages.map((src, i) => (
+            <div
+              key={`${activeTab}-${i}`}
+              className="relative flex-shrink-0 w-[350px] md:w-[450px] aspect-[4/3] overflow-hidden cursor-pointer group"
+              onClick={() => openLightbox(i)}
+            >
+              <Image
+                src={src}
+                alt={`${activeTab} view ${i + 1}`}
+                fill
+                sizes="(max-width: 768px) 350px, 450px"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p className="font-body text-[#594433] text-[10px] uppercase mt-6">
+        * Images are for representation purpose
+      </p>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-[#28362b]/95 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <button
+            className="absolute top-6 right-6 text-[#e1d5c9] hover:text-[#e1b258] transition-colors z-50"
+            onClick={closeLightbox}
+            aria-label="Close"
+          >
             <X size={24} />
           </button>
-          <div className="relative w-full max-w-5xl h-[85vh]" onClick={(e) => e.stopPropagation()}>
-            <Image src={lightbox} alt="Gallery" fill className="object-contain" sizes="100vw" />
+
+          <button
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center bg-[#28362b]/60 hover:bg-[#e1b258]/20 text-[#e1d5c9] hover:text-[#e1b258] rounded-full transition-all duration-300 border border-[#e1d5c9]/20 hover:border-[#e1b258]/40"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateLightbox("prev");
+            }}
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center bg-[#28362b]/60 hover:bg-[#e1b258]/20 text-[#e1d5c9] hover:text-[#e1b258] rounded-full transition-all duration-300 border border-[#e1d5c9]/20 hover:border-[#e1b258]/40"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateLightbox("next");
+            }}
+            aria-label="Next image"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          <div
+            className="relative w-full max-w-5xl h-[85vh] mx-16"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={currentImages[lightboxIndex]}
+              alt={`${activeTab} view ${lightboxIndex + 1}`}
+              fill
+              className="object-contain"
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
+            <p className="font-body text-[#ab948a] text-xs">
+              {lightboxIndex + 1} / {currentImages.length}
+            </p>
           </div>
         </div>
       )}
