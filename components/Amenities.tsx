@@ -7,7 +7,7 @@ const amenities = [
     img: "/img/amenities/meditation-centre.jpg",
   },
   {
-    name: "Business Loung",
+    name: "Business Lounge",
     desc: "A sophisticated space for residents balancing work and leisure. Quiet, private, and equipped for professional needs.",
     img: "/img/amenities/business-lounge.jpg",
   },
@@ -39,10 +39,10 @@ const amenities = [
   {
     name: "Community Lounge",
     desc: "An informal setting for conversation and connection. A place where neighbours meet beyond the everyday.",
-    img: "/img/amenities/open-workstations.jpg",
+    img: "/img/amenities/Community Lounge.png",
   },
   {
-    name: "Cricket",
+    name: "Cricket Truf",
     desc: "For the familiar rhythm of the game. Evenings often gather here around friendly matches and spirited play.",
     img: "/img/amenities/cricket.jpg",
   },

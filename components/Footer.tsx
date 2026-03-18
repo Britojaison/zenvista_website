@@ -11,7 +11,7 @@ export default function Footer() {
               className="h-12 w-auto mb-4 brightness-0 invert"
             />
             <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs">
-              An affordable luxury villa community in Goldwins, Coimbatore.
+              A luxury villa community in Goldwins, Coimbatore.
               Elevation without compromise.
             </p>
           </div>
@@ -37,15 +37,16 @@ export default function Footer() {
             <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
               Contact
             </p>
-            <p className="font-body text-[#b9b4a8] text-base leading-relaxed">
-              Goldwins, Coimbatore<br />Tamil Nadu, India
-            </p>
-            <a href="mailto:hello@zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">
-              hello@zenvistas.co.in
+            <a href="mailto:info@zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">
+              info@zenvistas.co.in
             </a>
             <a href="https://zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">
               zenvistas.co.in
             </a>
+            <p className="font-body text-[#b9b4a8] text-base leading-relaxed">
+              Goldwins, Coimbatore<br />Tamil Nadu, India
+            </p>
+            
           </div>
         </div>
 

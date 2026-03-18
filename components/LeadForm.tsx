@@ -34,6 +34,20 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
       });
 
       if (!res.ok) throw new Error("Submission failed");
+      
+      // Trigger PDF download
+      const link = document.createElement("a");
+      link.href = "/brochure/zenora-brochure.pdf";
+      link.download = "Zenora-Brochure.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Small delay to ensure download starts, then redirect
+      setTimeout(() => {
+        window.location.href = "https://zenvistas.spimproject.com/";
+      }, 300);
+      
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again.");
@@ -48,7 +62,7 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-[#0e0c0b]/70 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-[#0e0c0b]/80" />
 
       {/* Modal */}
       <div
@@ -116,7 +130,7 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-500 disabled:opacity-50"
+                className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Submitting..." : "Download Brochure"}
               </button>

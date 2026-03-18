@@ -35,13 +35,13 @@ export default function Contact() {
                 href="tel:+919999999999"
                 className="font-body text-[#e1b258] text-base hover:underline"
               >
-                +91 [phone_number]
+                +91 88700 44213
               </a>
               <a
                 href="mailto:hello@zenvistas.co.in"
                 className="font-body text-[#e1b258] text-base hover:underline"
               >
-                hello@zenvistas.co.in
+                info@zenvistas.co.in
               </a>
             </div>
           </div>

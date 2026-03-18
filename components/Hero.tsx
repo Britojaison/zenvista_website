@@ -12,6 +12,15 @@ export default function Hero() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (showForm) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [showForm]);
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <video

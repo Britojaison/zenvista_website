@@ -31,7 +31,7 @@ export default function Intro() {
             onClick={() => setShowForm(true)}
             className="inline-flex items-center gap-3 mt-10 font-body text-[10px] uppercase text-[#e1b258] hover:gap-5 transition-all duration-500 group"
           >
-            Get Your Brochure
+            Join The Experience
             <span className="w-8 h-px bg-[#e1b258] group-hover:w-12 transition-all duration-500" />
           </button>
         </div>

@@ -31,9 +31,9 @@ const neighbourhoodData = {
     { place: "KGISL Campus", dist: "8.9 km (23 mins)" },
   ],
   Shopping: [
-    { place: "FUNMALL", dist: "8.2 km (17 mins)" },
-    { place: "PROZONE", dist: "9.7 km (24 mins)" },
-    { place: "BROADWAY Cinemas", dist: "3.8 km (9 mins)" },
+    { place: "Funmall", dist: "8.2 km (17 mins)" },
+    { place: "Prozone", dist: "9.7 km (24 mins)" },
+    { place: "Broadway Cinemas", dist: "3.8 km (9 mins)" },
     { place: "DMart Singanallur", dist: "9.0 km (21 mins)" },
     { place: "DMart Chinniyampalayam", dist: "4.8 km (9 mins)" },
     { place: "DMart Sulur", dist: "15.1 km (27 mins)" },
