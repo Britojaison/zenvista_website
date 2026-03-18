@@ -38,7 +38,7 @@ export default function Hero() {
         </p>
         <button
           onClick={() => setShowForm(true)}
-          className="mt-12 bg-white text-[#28362b] text-[10px] uppercase px-8 py-4 hover:bg-[#e1b258] hover:text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+          className="mt-12 bg-white text-[#28362b] text-xs uppercase px-10 py-5 hover:bg-[#e1b258] hover:text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl"
         >
           Discover Zenora
         </button>

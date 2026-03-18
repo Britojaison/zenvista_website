@@ -44,7 +44,7 @@ const tabInfo: Record<Tab, { label: string; title: string; desc: string }> = {
   indoor: {
     label: "Indoor",
     title: "Indoor Spaces",
-    desc: "Interiors defined by proportion and light. Spaces that feel calm, considered and quietly refined.",
+    desc: "Interiors defined by proportion and light. Spaces that feel calm,considered and quietly refined.",
   },
   outdoor: {
     label: "Outdoor",
@@ -221,7 +221,7 @@ export default function Gallery() {
       <div className="mb-16">
         <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Gallery</p>
         <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">
-          See it to believe it
+          See it to believe it.
         </h2>
       </div>
 

@@ -50,7 +50,7 @@ export default function FAQ() {
               Questions
             </p>
             <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">
-              Frequently<br />asked
+              Frequently<br />asked.
             </h2>
           </div>
 

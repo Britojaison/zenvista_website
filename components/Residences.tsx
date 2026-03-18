@@ -5,7 +5,7 @@ import LeadForm from "./LeadForm";
 
 const units = [
   {
-    number: "5",
+    number: "5.5",
     text: "Cent Villa",
     label: "5 Cent Villa",
     tag: "Intimate",
@@ -37,7 +37,7 @@ export default function Residences() {
     <section id="residences" className="pt-8 pb-32 px-6 md:px-20 max-w-screen-xl mx-auto">
       <div className="mb-20">
         <p className="font-body text-[#e1b258] text-xs uppercase mb-4">Residences</p>
-        <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">Choose your elevation</h2>
+        <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#28362b]">Choose your elevation.</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {units.map((u) => (

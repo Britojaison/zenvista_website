@@ -17,7 +17,7 @@ export default function FullBleedImage({ src, alt, quote, author }: Props) {
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="text-center max-w-2xl">
             <p className="font-display text-[clamp(1.5rem,3.5vw,2.8rem)] text-[#e1d5c9] leading-[1.3] italic">
-              &ldquo;{quote}&rdquo;
+              {quote}
             </p>
             {author && (
               <p className="font-body text-[#e1b258] text-xs uppercase mt-6">— {author}</p>

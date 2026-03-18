@@ -21,7 +21,7 @@ export default function Contact() {
               Get in Touch
             </p>
             <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-[#e1d5c9] mb-8">
-              Begin your<br />Zenora journey
+              Begin your<br />Zenora journey.
             </h2>
             <p className="font-body text-[#e1d5c9]/70 text-base leading-[1.9] mb-10">
               Our team is ready to walk you through every detail — from floor plans to
