@@ -6,12 +6,12 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 const indoorImages = [
   "/indoor/bedroom01.jpg",
   "/indoor/bathroom.jpg",
-  "/indoor/cafe-.jpg",
-  "/indoor/spa--saloon-.jpg",
+  "/indoor/Kitchen.jpg",
+  "/indoor/Living.jpg",
+  "/indoor/Dinning  (1).jpg",
+  "/indoor/Master Bedroom View 1.jpg",
+  "/indoor/View-10.jpg",
   "/indoor/View-11.png",
-  "/indoor/View-19.png",
-  "/indoor/View-20.png",
-  "/indoor/View-21.png",
   "/indoor/View-42.png",
   "/indoor/View-48.png",
 ];
@@ -27,7 +27,11 @@ const outdoorImages = [
   "/outdoor/View-10.png",
   "/outdoor/View-12.png",
   "/outdoor/View-13.png",
-  
+  "/outdoor/View-14.png",
+  "/outdoor/View-34.png",
+  "/outdoor/View-41.png",
+  "/outdoor/View-46.png",
+  "/outdoor/View-47.png",
 ];
 
 const clubhouseImages = [
@@ -35,6 +39,10 @@ const clubhouseImages = [
   "/clubhouse/View-12.png",
   "/clubhouse/clubgouseimg.png",
   "/clubhouse/clubhouseimg2.png",
+  "/clubhouse/Business Liunge (1).png",
+  "/clubhouse/Gym.jpg",
+  "/clubhouse/Spa & Saloon .jpg",
+  "/clubhouse/Yoga.jpg",
 ];
 
 const tabs = ["indoor", "outdoor", "clubhouse"] as const;

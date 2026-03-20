@@ -4,11 +4,33 @@ import { useState } from "react";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Replace with actual form submission logic
-    setSent(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          note: form.message || "Enquiry from Contact section",
+        }),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+      setSent(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -101,10 +123,15 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="mt-4 border border-[#e1d5c9]/40 text-[#e1d5c9] font-body text-[10px] uppercase py-4 hover:bg-[#e1d5c9] hover:text-[#561a28] transition-all duration-500 hover:scale-105 hover:shadow-lg"
+                  disabled={loading}
+                  className="mt-4 border border-[#e1d5c9]/40 text-[#e1d5c9] font-body text-[10px] uppercase py-4 hover:bg-[#e1d5c9] hover:text-[#561a28] transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Enquiry
+                  {loading ? "Submitting..." : "Send Enquiry"}
                 </button>
+
+                {error && (
+                  <p className="font-body text-red-300 text-xs text-center mt-2">{error}</p>
+                )}
               </form>
             )}
           </div>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
 const neighbourhoodData = {
@@ -24,6 +24,14 @@ const neighbourhoodData = {
     { place: "Sri Vivekananda Matric", dist: "2.4 km (6 mins)" },
     { place: "CBSE School (Reeds)", dist: "1.3 km (3 mins)" },
   ],
+  Hospitals: [
+    { place: "KMCH Medical", dist: "3.7 km (9 mins)" },
+    { place: "Lotus Eye Care", dist: "5.4 km (14 mins)" },
+    { place: "Yazhini Hospital", dist: "5.2 km (12 mins)" },
+    { place: "RG Hospital", dist: "4.4 km (9 mins)" },
+    { place: "Venkateshwara Hospital", dist: "5.6 km (11 mins)" },
+    { place: "Reya Care", dist: "4.4 km (11 mins)" },
+  ],
   Work: [
     { place: "Tidel Park", dist: "9.4 km (22 mins)" },
     { place: "Cognizant", dist: "12.4 km (31 mins)" },
@@ -45,6 +53,16 @@ const categories = Object.keys(neighbourhoodData) as Category[];
 
 export default function Location() {
   const [activeCategory, setActiveCategory] = useState<Category>("Travel");
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [underline, setUnderline] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    const idx = categories.indexOf(activeCategory);
+    const btn = tabRefs.current[idx];
+    if (btn) {
+      setUnderline({ left: btn.offsetLeft, width: btn.offsetWidth });
+    }
+  }, [activeCategory]);
 
   return (
     <section id="location" className="pt-16 pb-32">
@@ -60,12 +78,13 @@ export default function Location() {
             </p>
 
             {/* Tabs */}
-            <div className="relative flex w-full border-b border-[#ab948a]/20 mb-8 overflow-x-auto hide-scrollbar">
-              {categories.map((cat) => (
+            <div className="relative flex w-full border-b border-[#ab948a]/20 mb-8">
+              {categories.map((cat, i) => (
                 <button
                   key={cat}
+                  ref={(el) => { tabRefs.current[i] = el; }}
                   onClick={() => setActiveCategory(cat)}
-                  className={`relative flex-1 font-body text-xs sm:text-sm uppercase tracking-wider px-2 sm:px-6 py-3 transition-colors duration-400 text-center whitespace-nowrap ${
+                  className={`relative flex-1 font-body text-[10px] sm:text-xs uppercase py-3 transition-colors duration-400 text-center whitespace-nowrap ${
                     activeCategory === cat ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
                   }`}
                   style={{ fontFamily: "'BW Diagrid', sans-serif" }}
@@ -77,8 +96,8 @@ export default function Location() {
               <span
                 className="absolute bottom-0 h-[2px] bg-[#e1b258] transition-all duration-500 ease-in-out"
                 style={{
-                  left: `${(categories.indexOf(activeCategory) * 100) / categories.length}%`,
-                  width: `${100 / categories.length}%`,
+                  left: `${underline.left}px`,
+                  width: `${underline.width}px`,
                 }}
               />
             </div>

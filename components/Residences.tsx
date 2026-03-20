@@ -13,9 +13,9 @@ const units = [
     img: "/img/master-bedroom-view-1.jpg",
   },
   {
-    number: "8",
+    number: "7",
     text: "Cent Villa",
-    label: "8 Cent Villa",
+    label: "7 Cent Villa",
     tag: "Signature",
     desc: "The balance of grandeur and warmth. Generous spaces that breathe, with rooftop access to the Sky Garden and Aqua Lounge.",
     img: "/img/7-cent-side.jpg",

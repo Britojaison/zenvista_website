@@ -8,7 +8,7 @@ export default function Footer() {
             <img 
               src="/images/zenora_logo.svg" 
               alt="Zenora Logo" 
-              className="h-12 w-auto mb-4 brightness-0 invert"
+              className="h-12 w-auto mb-4"
             />
             <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs">
               A luxury villa community in Goldwins, Coimbatore.

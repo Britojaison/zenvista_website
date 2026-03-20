@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, phone, email } = body;
+    const { name, phone, email, note } = body;
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       "sell_do[form][lead][email]": email,
       "sell_do[form][lead][phone]": phone,
       "sell_do[campaign][srd]": process.env.SELLDO_SRD!,
-      "sell_do[form][note][content]": "Lead from Zenora Website",
+      "sell_do[form][note][content]": note || "Lead from Zenora Website",
     });
 
     const response = await fetch(
