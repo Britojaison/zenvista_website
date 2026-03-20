@@ -56,7 +56,7 @@ export default function Footer() {
             © {new Date().getFullYear()} ZenVistas. All rights reserved.
           </p>
           <p className="font-body text-[#ab948a] text-[10px]">
-            RERA Registered · TN/XXXXXXX
+            RERA Registered · TNRERA/11/BLG/0013/2026
           </p>
         </div>
       </div>

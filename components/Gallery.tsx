@@ -39,7 +39,6 @@ const clubhouseImages = [
   "/clubhouse/View-12.png",
   "/clubhouse/clubgouseimg.png",
   "/clubhouse/clubhouseimg2.png",
-  "/clubhouse/Business Liunge (1).png",
   "/clubhouse/Gym.jpg",
   "/clubhouse/Spa & Saloon .jpg",
   "/clubhouse/Yoga.jpg",

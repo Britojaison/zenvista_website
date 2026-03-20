@@ -8,6 +8,7 @@ const links = [
   { label: "Gallery", href: "#gallery" },
   { label: "Location", href: "#location" },
   { label: "Contact", href: "#contact" },
+  { label: "Webverse", href: "https://zenvistas.spimproject.com/", external: true },
 ];
 
 export default function Navbar() {
@@ -42,6 +43,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
+              {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className={`font-body text-[11px] uppercase transition-all duration-500 relative group ${scrolled ? "text-[#594433] hover:text-[#28362b]" : "text-white/90 hover:text-white"}`}
             >
               {l.label}
@@ -75,6 +77,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
+              {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               onClick={() => setOpen(false)}
               className="font-body text-[11px] uppercase text-[#594433] hover:text-[#28362b] transition-colors"
             >

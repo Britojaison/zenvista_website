@@ -8,7 +8,7 @@ export default function Intro() {
 
   return (
     <section className="py-20 px-6 md:px-20 max-w-screen-xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-16 items-stretch">
+      <div className="grid md:grid-cols-[2fr_3fr] gap-16 items-center">
         <div>
           <p className="font-body text-[#e1b258] text-xs uppercase mb-6">
             A New Standard
@@ -35,17 +35,12 @@ export default function Intro() {
             <span className="w-8 h-px bg-[#e1b258] group-hover:w-12 transition-all duration-500" />
           </button>
         </div>
-        <div className="relative w-full h-full min-h-[500px] overflow-hidden">
-          <Image
+        <div>
+          <img
             src="/img/aerial-view-club-hosue.jpg"
             alt="Zenora architecture"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-center"
-            priority
+            className="w-full h-auto"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0b]/40 to-transparent" />
-          <div className="absolute bottom-6 right-6 border border-[#e1b258]/30 w-16 h-16" />
         </div>
       </div>
       <LeadForm open={showForm} onClose={() => setShowForm(false)} />

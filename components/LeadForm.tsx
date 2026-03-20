@@ -43,9 +43,6 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
       link.click();
       document.body.removeChild(link);
       
-      // Small delay to ensure download starts, then redirect in new tab
-      window.open("https://zenvistas.spimproject.com/", "_blank", "noopener,noreferrer");
-      
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again.");
